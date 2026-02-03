@@ -1,7 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+const TEST_NAME = require('path').parse(__filename).base.replace(/\.spec\.js/, '');
+
 test('prefix-component loads and renders with CSS', async ({ page }) => {
-  await page.goto('/tests/prefix-test.html');
+  await page.goto('/tests/' + TEST_NAME + '.html');
 
   // Wait for the component to be loaded and rendered
   await page.waitForSelector('prefix-component');
