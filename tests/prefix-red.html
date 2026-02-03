@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Prefix Matching</title>
+</head>
+<body>
+
+  <prefix-red></prefix-red>
+
+  <script type="module">
+    import HtmlAutoloader from '../src/HtmlAutoloader.js';
+
+    const elementMap = [
+      {
+        prefix: 'prefix-',
+        resources: {
+          js: './resources/prefix-bundle.js',
+          css: './resources/prefix-bundle.css'
+        }
+      }
+    ];
+
+    (new HtmlAutoloader(import.meta)).addElements(elementMap).register();
+  </script>
+
+</body>
+</html>
