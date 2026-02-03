@@ -13,15 +13,11 @@
     const elementMap = [
       {
         element: 'hello-world-js',
-        resources: {
-          js: './resources/hello-world-js.js'
-        }
+        resources: {js: './resources/hello-world-js.js'}
       }
     ];
 
-    (new HtmlAutoloader(import.meta))
-      .addElements(elementMap)
-      .register();
+    (new HtmlAutoloader(import.meta)).addElements(elementMap).register();
   </script>
 
 </body>

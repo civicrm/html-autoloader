@@ -17,15 +17,11 @@
     const elementMap = [
       {
         element: 'hello-world-module',
-        resources: {
-          import: '../resources/hello-world-module.js'
-        }
+        resources: { import: '../resources/hello-world-module.js' }
       }
     ];
 
-    (new HtmlAutoloader(import.meta))
-      .addElements(elementMap)
-      .register();
+    (new HtmlAutoloader(import.meta)).addElements(elementMap).register();
   </script>
 
 </body>
