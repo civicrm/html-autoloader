@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Hello World</title>
+  <!--
+    This example lives in a subdir. The relative-paths used for "import"
+    should therefore be relative to the subdir.
+  -->
+  <script type="importmap">
+  {
+    "imports": {
+      "html-autoloader": "../../src/HtmlAutoloader.js",
+      "my-stuff/": "../resources/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <hello-world-module></hello-world-module>
+
+  <script type="module">
+    import HtmlAutoloader from 'html-autoloader';
+
+    const elementMap = [
+      {
+        element: 'hello-world-module',
+        resources: { import: 'my-stuff/hello-world-module.js' }
+      }
+    ];
+
+    (new HtmlAutoloader(import.meta)).addElements(elementMap).register();
+  </script>
+
+</body>
+</html>
