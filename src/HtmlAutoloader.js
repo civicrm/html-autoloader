@@ -6,6 +6,7 @@ class HtmlAutoloader {
     this.availablePrefixes = {};
     this.resourceTypes = {};
     this.loadedElements = new Set();
+    this.isRegistered = false;
 
     this.addResourceType({
       name: 'js',
@@ -68,6 +69,9 @@ class HtmlAutoloader {
   }
 
   addElement(elementRule) {
+    if (this.isRegistered) {
+      throw new Error('Cannot add new rules after registration.');
+    }
     if (elementRule.element) {
       this.availableElements[elementRule.element] = elementRule;
     }
@@ -83,6 +87,9 @@ class HtmlAutoloader {
   }
 
   addElements(elementRules) {
+    if (this.isRegistered) {
+      throw new Error('Cannot add new rules after registration.');
+    }
     for (const elementRule of elementRules) {
       this.addElement(elementRule);
     }
@@ -90,11 +97,16 @@ class HtmlAutoloader {
   }
 
   addResourceType(resourceTypeDef) {
+    if (this.isRegistered) {
+      throw new Error('Cannot add new resource types after registration.');
+    }
     this.resourceTypes[resourceTypeDef.name] = resourceTypeDef;
     return this;
   }
 
   register() {
+    this.isRegistered = true;
+
     // Scan for existing elements
     this.scan(document.body);
 
