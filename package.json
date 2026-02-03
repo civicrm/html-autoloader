@@ -1,0 +1,18 @@
+{
+  "name": "html-autoloader",
+  "version": "1.0.0",
+  "description": "The `html-autoloader` library provides a service for loading Web Components in web-browsers.  It facilitates _dynamic-linking_, where one Web Component can reference another Web Component *without* knowledge of its physical file-layout.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.58.1"
+  }
+}
