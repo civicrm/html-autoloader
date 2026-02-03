@@ -72,7 +72,9 @@ class HtmlAutoloader {
       this.availableElements[elementRule.element] = elementRule;
     }
     else if (elementRule.prefix) {
-      this.availablePrefixes[elementRule.prefix] = elementRule;
+      const char = elementRule.prefix.charAt(0);
+      this.availablePrefixes[char] = this.availablePrefixes[char] || [];
+      this.availablePrefixes[char].push(elementRule);
     }
     return this;
   }
@@ -123,38 +125,41 @@ class HtmlAutoloader {
     }
     this.loadedElements.add(name);
 
-    const rule = this.findRuleFor(name);
-    if (!rule) {
+    const rules = this.#claimRulesFor(name);
+    if (!rules.length) {
       return;
     }
 
     const promises = [];
-    for (const resourceType in rule.resources) {
-      if (this.resourceTypes[resourceType]) {
-        const resource = rule.resources[resourceType];
-        promises.push(this.resourceTypes[resourceType].onLoad(resource, name, rule));
+    for (const rule of rules) {
+      for (const resourceType in rule.resources) {
+        if (this.resourceTypes[resourceType]) {
+          const resource = rule.resources[resourceType];
+          promises.push(this.resourceTypes[resourceType].onLoad(resource, name, rule));
+        }
       }
     }
     return Promise.all(promises);
   }
 
-  findRuleFor(name) {
-    // Exact match
+  #claimRulesFor(name) {
+    const foundRules = [];
+
     if (this.availableElements[name]) {
-      const rule = this.availableElements[name];
+      foundRules.push(this.availableElements[name]);
       delete this.availableElements[name];
-      return rule;
     }
 
-    // Prefix match
-    for (const prefix in this.availablePrefixes) {
-      if (name.startsWith(prefix)) {
-        const rule = this.availablePrefixes[prefix];
-        delete this.availablePrefixes[prefix];
-        return rule;
+    const char = name.charAt(0);
+    const prefixes = this.availablePrefixes[char] || [];
+    for (const offset in prefixes) {
+      const rule = prefixes[offset];
+      if (name.startsWith(rule.prefix)) {
+        foundRules.push(rule);
+        delete prefixes[offset];
       }
     }
-    return null;
+    return foundRules;
   }
 }
 
