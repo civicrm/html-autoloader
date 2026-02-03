@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Hello World Combined HTML</title>
+  <script type="module">
+    import HtmlAutoloader from '../src/HtmlAutoloader.js';
+
+    const elementMap = [
+      {
+        element: 'hello-world-combined',
+        resources: {html: './resources/hello-world-combined.html'}
+      }
+    ];
+
+    (new HtmlAutoloader(import.meta)).addElements(elementMap).register();
+  </script>
+
+</head>
+<body>
+
+  <hello-world-combined></hello-world-combined>
+  <hello-world-combined name="Alice"></hello-world-combined>
+  <hello-world-combined name="Bob"></hello-world-combined>
+
+</body>
+</html>

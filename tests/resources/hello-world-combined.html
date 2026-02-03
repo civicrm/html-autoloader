@@ -1,0 +1,42 @@
+<template id="hello-world-combined-tpl">
+  <p>Hello, {$name}!</p>
+</template>
+
+<script type="text/javascript">
+class HelloWorldCombined extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.render();
+  }
+
+  static get observedAttributes() {
+    return ['name'];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'name') {
+      this.render();
+    }
+  }
+
+  render() {
+    const template = document.getElementById('hello-world-combined-tpl');
+    if (template) {
+      const content = template.content.cloneNode(true);
+      const name = this.getAttribute('name') || 'World'; // Default to 'World' if no name attribute is provided
+
+      // Replace the placeholder. This is a simple replacement; for more complex
+      // templating, one might use a dedicated templating library.
+      let html = content.firstElementChild.outerHTML; // Assuming template has one root element (e.g., <p>)
+      html = html.replace('{$name}', name);
+
+      this.shadowRoot.innerHTML = html;
+    } else {
+      console.error('Template with id "hello-world-combined-tpl" not found.');
+    }
+  }
+}
+
+customElements.define('hello-world-combined', HelloWorldCombined);
+</script>

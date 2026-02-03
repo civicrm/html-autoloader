@@ -39,7 +39,7 @@ class HtmlAutoloader {
         return fetch(resource)
           .then(response => response.text())
           .then(html => {
-            document.head.insertAdjacentHTML('beforeend', html);
+            appendHtmlWithScripts(html);
             return `HTML loaded: ${resource}`;
           });
       }
@@ -151,6 +151,32 @@ class HtmlAutoloader {
     }
     return null;
   }
+}
+
+function appendHtmlWithScripts(htmlData) {
+  const template = document.createElement('template');
+  template.innerHTML = htmlData;
+
+  const fragment = template.content;
+
+  // Move nodes one by one so scripts execute
+  Array.from(fragment.childNodes).forEach(node => {
+    if (node.nodeName === 'SCRIPT') {
+      const script = document.createElement('script');
+
+      Array.from(node.attributes).forEach(attr => {
+        script.setAttribute(attr.name, attr.value);
+      });
+
+      if (node.textContent) {
+        script.textContent = node.textContent;
+      }
+
+      document.body.appendChild(script);
+    } else {
+      document.body.appendChild(node);
+    }
+  });
 }
 
 export default HtmlAutoloader;
