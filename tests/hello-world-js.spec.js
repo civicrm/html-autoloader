@@ -6,11 +6,11 @@ test('hello-world component loads and renders', async ({ page }) => {
   await page.goto('/tests/' + TEST_NAME + '.html');
 
   // Wait for the component to be loaded and rendered
-  await page.waitForSelector('hello-world');
+  await page.waitForSelector('hello-world-js');
 
   // Check that the component's shadow DOM contains the correct text
   const text = await page.evaluate(() => {
-    const el = document.querySelector('hello-world');
+    const el = document.querySelector('hello-world-js');
     return el.shadowRoot.querySelector('p').textContent;
   });
 

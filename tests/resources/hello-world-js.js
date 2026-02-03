@@ -1,4 +1,4 @@
-class HelloWorld extends HTMLElement {
+class HelloWorldJs extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -6,4 +6,4 @@ class HelloWorld extends HTMLElement {
   }
 }
 
-customElements.define('hello-world', HelloWorld);
+customElements.define('hello-world-js', HelloWorldJs);
