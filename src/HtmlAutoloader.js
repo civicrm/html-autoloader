@@ -60,8 +60,9 @@ class HtmlAutoloader {
     this.addResourceType({
       name: 'import',
       onLoad: (resource, elementName, elementRule) => {
-        return import(resource)
-          .then(() => `Import loaded: ${resource}`);
+        const resolvedResource = this.importMeta.resolve(resource);
+        return import(resolvedResource)
+          .then(() => `Import loaded: ${resolvedResource}`);
       }
     });
   }
