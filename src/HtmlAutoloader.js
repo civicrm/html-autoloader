@@ -2,10 +2,10 @@ class HtmlAutoloader {
 
   constructor(importMeta) {
     this.importMeta = importMeta;
-    this.elementRules = [];
+    this.availableElements = {};
+    this.availablePrefixes = {};
     this.resourceTypes = {};
     this.loadedElements = new Set();
-    this.loadedRules = new Set();
 
     this.addResourceType({
       name: 'js',
@@ -68,12 +68,19 @@ class HtmlAutoloader {
   }
 
   addElement(elementRule) {
-    this.elementRules.push(elementRule);
+    if (elementRule.element) {
+      this.availableElements[elementRule.element] = elementRule;
+    }
+    else if (elementRule.prefix) {
+      this.availablePrefixes[elementRule.prefix] = elementRule;
+    }
     return this;
   }
 
   addElements(elementRules) {
-    this.elementRules.push(...elementRules);
+    for (const elementRule of elementRules) {
+      this.addElement(elementRule);
+    }
     return this;
   }
 
@@ -121,11 +128,6 @@ class HtmlAutoloader {
       return;
     }
 
-    if (this.loadedRules.has(rule)) {
-      return;
-    }
-    this.loadedRules.add(rule);
-
     const promises = [];
     for (const resourceType in rule.resources) {
       if (this.resourceTypes[resourceType]) {
@@ -138,14 +140,17 @@ class HtmlAutoloader {
 
   findRuleFor(name) {
     // Exact match
-    for (const rule of this.elementRules) {
-      if (rule.element === name) {
-        return rule;
-      }
+    if (this.availableElements[name]) {
+      const rule = this.availableElements[name];
+      delete this.availableElements[name];
+      return rule;
     }
+
     // Prefix match
-    for (const rule of this.elementRules) {
-      if (rule.prefix && name.startsWith(rule.prefix)) {
+    for (const prefix in this.availablePrefixes) {
+      if (name.startsWith(prefix)) {
+        const rule = this.availablePrefixes[prefix];
+        delete this.availablePrefixes[prefix];
         return rule;
       }
     }
