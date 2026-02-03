@@ -72,6 +72,9 @@ class HtmlAutoloader {
       this.availableElements[elementRule.element] = elementRule;
     }
     else if (elementRule.prefix) {
+      if (!elementRule.prefix.endsWith('-')) {
+        throw new Error(`Prefix must end with a hyphen: ${elementRule.prefix}`);
+      }
       const char = elementRule.prefix.charAt(0);
       this.availablePrefixes[char] = this.availablePrefixes[char] || [];
       this.availablePrefixes[char].push(elementRule);
