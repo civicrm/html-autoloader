@@ -19,8 +19,8 @@ The concept can be loosely compared to PHP's mechanism for class-loading:
 In both cases, there can be multiple listeners, but it is *best* to have a small number of listeners; ideally, one listener has
 the *map* or *index*.  Whenever the application is updated (to add/upgrade/remove Web Components), we build a new index.
 
-For PHP, the application builds an instance of \Composer\Autoload\ClassLoader()` and configures a map of
-classes/namespaces/folders/files.  For the browser, the `html-autoloader` provides a similar utility (`HtmlAutoloader`).
+For PHP, the application builds an instance of `\Composer\Autoload\ClassLoader()` and configures a map of
+classes/namespaces/folders/files.  For the browser, the `html-autoloader` provides a similar utility (`HtmlAutoloader`) with a map of web-components/custom-elements.
 
 ## General Usage
 
@@ -112,23 +112,7 @@ The `HtmlAutoloader` has several methods, with fluent style.
     await loader.loadElement('apple-fuji');
     ```
 
-    Logic:
-    
-    * If the element `apple-fuji` has already loaded, return completion.
-    * Mark the element as loaded.
-    * Find the `rule` for the element. If the rule has already been loaded, return completion.
-    * Mark the rule as loaded.
-    * Examine the `resources`. Fire the `resourceType[type].onLoad` for each resource.
-    * Return a single `Promise.all()` for the set of resources.
-
-    For example, `apple-fuji` requires calling two calls to `onLoad`:
-    
-    ```
-    let rule = rules[1];
-    promises.push(resourceTypes['js'].onLoad('https://example.com/apple/fuji.js', 'apple-fuji', rule));
-    promises.push(resourceTypes['css'].onLoad('https://example.com/apple/fuji.css', 'apple-fuji', rule));
-    return Promise.all(promises);
-    ```
+    This loads all `resource`s declared for `apple-fuji` or `apple-*` The `Promise` returns true after loading.
 
     <!-- TODO: Add support for fetching in phaess, grouping by `resourceType.weight` -->
 
