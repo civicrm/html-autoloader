@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Hello World</title>
+</head>
+<body>
+
+  <hello-world></hello-world>
+
+  <script type="module">
+    import HtmlAutoloader from '../src/HtmlAutoloader.js';
+
+    const elementMap = [
+      {
+        element: 'hello-world',
+        resources: {
+          js: './resources/hello-world.js'
+        }
+      }
+    ];
+
+    (new HtmlAutoloader(import.meta))
+      .addElements(elementMap)
+      .register();
+  </script>
+
+</body>
+</html>
