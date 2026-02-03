@@ -88,7 +88,45 @@ class HtmlAutoloader {
   }
 
   async loadElement(name) {
-    // TODO: Implement element loading logic
+    if (this.loadedElements.has(name)) {
+      return;
+    }
+    this.loadedElements.add(name);
+
+    const rule = this.findRuleFor(name);
+    if (!rule) {
+      return;
+    }
+
+    if (this.loadedRules.has(rule)) {
+      return;
+    }
+    this.loadedRules.add(rule);
+
+    const promises = [];
+    for (const resourceType in rule.resources) {
+      if (this.resourceTypes[resourceType]) {
+        const resource = rule.resources[resourceType];
+        promises.push(this.resourceTypes[resourceType].onLoad(resource, name, rule));
+      }
+    }
+    return Promise.all(promises);
+  }
+
+  findRuleFor(name) {
+    // Exact match
+    for (const rule of this.elementRules) {
+      if (rule.element === name) {
+        return rule;
+      }
+    }
+    // Prefix match
+    for (const rule of this.elementRules) {
+      if (rule.prefix && name.startsWith(rule.prefix)) {
+        return rule;
+      }
+    }
+    return null;
   }
 }
 
