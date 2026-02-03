@@ -5,14 +5,14 @@ where one Web Component can reference another Web Component *without* knowledge 
 
 ## Requirements
 
-* __Browser Runtime__: Baseline 2022 (or newer)
+* __Browser Runtime__: [Baseline](https://web.dev/baseline) 2022 (or newer)
 * __Testing__ NodeJS v22 LTS (or newer), Playwright
 
 ## Comparison: PHP Classes and HTML Web Components
 
 The concept can be loosely compared to PHP's mechanism for class-loading:
 
-* In PHP, `spl_autoload_register()` allows you to listen+respond whenever  someone accesses an unrecognized class.
+* In PHP, `spl_autoload_register()` allows you to listen+respond whenever someone accesses an unrecognized class.
 
 * In a browser, `MutationObserver` allows you to listen+respond whenever someone accesses an unrecognized Web Component.
 
@@ -31,7 +31,7 @@ Consider this example:
 <script type="importmap">
 {
   "imports": {
-    "html-autoloader": "https://cdn.example.com/html-autoloader-1.0.0.js"
+    "html-autoloader": "https://cdn.example.com/html-autoloader@1.0"
   }
 }
 </script>
@@ -49,7 +49,7 @@ const elementMap = [
   {element: 'apple-fuji',         resources: {js: 'https://example.com/apple/fuji.js', css: 'https://example.com/apple/fuji.css'},
   {element: 'apple-delicious',    resources: {html: '/elements/apple-delicious.html'},
   {element: 'apple-gala',         resources: {module: 'https://example.com/apple/gala.esm.js'},
-  {element: 'apple-honey-crisp',  resources: {import: '/elements/apple-honey-crisp.js'},
+  {element: 'apple-honey-crisp',  resources: {import: 'elements/apple-honey-crisp.js'},
   {prefix: 'banana-',             resources: {js: 'https://example.com/banana-bundle.js'}, css: 'https://example.com/banana-bundle.css'},
   {prefix: 'cherry-',             resources: {module: 'https://example.com/cherry.esm.js'}},
   {prefix: 'date-',               resources: {import: 'date/bundle.js'}},
@@ -62,12 +62,12 @@ Observe:
 
 * In this example, we load the element-map from a JSON file (`elements.json`). There are several rules.
 * Some rules match an exact `element` name, and others rules match by `prefix`.
-    * __Exact match__: If the DOM ever includes an `<apple-fuji>`, then load the JS+CSS file.
-    * __Prefix match__: If the DOM ever includes a `<banana-*>` (such as `<banana-cavendish` or `<banana-mysore>`), then it activates the relevant rule.
+    * __Exact match__: If the DOM ever includes an `<apple-fuji>` tag, then load the JS+CSS file.
+    * __Prefix match__: If the DOM ever includes a `<banana-*>` tag (such as `<banana-cavendish` or `<banana-mysore>`), then it activates the relevant rule.
 * To load a Web Component, one fetches a mix of resources. These resource-types are included in the standard implementation:
-    * `import`: Load ESM resource from the importmap (`import(...)`).
+    * `import`: Import an ECMAScript Module (ESM). This respects the import-map. (`import()`).
     * `js`: Load resource from URL (`<script type="javascript" src="...">`)
-    * `module`: Loadresource from URL (`<script type="module" src="...">`)
+    * `module`: Load resource from URL (`<script type="module" src="...">`)
     * `css`: Load resource from URL (`<link rel="stylesheet" href="...">`)
     * `html`: Fetch resource (`fetch(...)`) and append to DOM. 
 * Each resource (element, prefix, JS URL, CSS URL, etc) is only loaded once.
