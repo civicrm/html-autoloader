@@ -82,9 +82,31 @@ class HtmlAutoloader {
   }
 
   register() {
-    // TODO: Scan DOM for existing elements
-    // TODO: Register MutationObserver
+    // Scan for existing elements
+    this.scan(document.body);
+
+    // Watch for new elements
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            this.scan(node);
+          }
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
     return this;
+  }
+
+  scan(rootNode) {
+    const elements = rootNode.querySelectorAll('*');
+    for (const element of elements) {
+      if (element.localName.includes('-')) {
+        this.loadElement(element.localName);
+      }
+    }
   }
 
   async loadElement(name) {
