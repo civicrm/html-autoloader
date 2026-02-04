@@ -63,15 +63,16 @@ Consider this example:
 ```javascript
 // FILE: dist/elements.json
 [
-  {"element": 'apple-fuji',         "resources": {"js": 'https://example.com/apple/fuji.js', "css": 'https://example.com/apple/fuji.css'},
-  {"element": 'apple-delicious',    "resources": {"html": '/elements/apple-delicious.html'},
-  {"element": 'apple-gala',         "resources": {"module": 'https://example.com/apple/gala.esm.js'},
-  {"element": 'apple-honey-crisp',  "resources": {"import": 'elements/apple-honey-crisp.js'},
-  {"prefix": 'banana-',             "resources": {"js": 'https://example.com/banana-bundle.js'}, "css": 'https://example.com/banana-bundle.css'},
-  {"prefix": 'cherry-',             "resources": {"module": 'https://example.com/cherry.esm.js'}},
-  {"prefix": 'date-',               "resources": {"import": 'date/bundle.js'}},
-  {"prefix": 'elderberry-',         "resources": {"import": 'elderberry/bundle.html}},
+  {"element": "apple-fuji",         "resources": {"js": "https://example.com/apple/fuji.js", "css": "https://example.com/apple/fuji.css"}},
+  {"element": "apple-delicious",    "resources": {"html": "/elements/apple-delicious.html"}},
+  {"element": "apple-gala",         "resources": {"module": "https://example.com/apple/gala.esm.js"}},
+  {"element": "apple-honey-crisp",  "resources": {"import": "elements/apple-honey-crisp.js"}},
+  {"prefix": "banana-",             "resources": {"js": "https://example.com/banana-bundle.js", "css": "https://example.com/banana-bundle.css"}},
+  {"prefix": "cherry-",             "resources": {"module": "https://example.com/cherry.esm.js"}},
+  {"prefix": "date-",               "resources": {"import": "date/bundle.js"}},
+  {"prefix": "elderberry-",         "resources": {"import": "elderberry/bundle.html"}}
 ]
+
 ```
 
 Observe:
