@@ -5,7 +5,7 @@ const TEST_NAME = require('path').parse(__filename).base.replace(/\.spec\.js/, '
 test('prefix-red loads and renders with CSS', async ({ page }) => {
   await page.goto('/tests/' + TEST_NAME + '.html');
 
-  await page.waitForSelector('prefix-red');
+  await page.locator('prefix-red').waitFor();
   const text1 = await page.evaluate(() => {
     const el = document.querySelector('prefix-red');
     return el.textContent;
@@ -18,7 +18,7 @@ test('prefix-red loads and renders with CSS', async ({ page }) => {
   });
   expect(color1).toBe('rgb(255, 0, 0)');
 
-  await page.waitForSelector('prefix-green');
+  await page.locator('prefix-green').waitFor();
   const text2 = await page.evaluate(() => {
     const el = document.querySelector('prefix-green');
     return el.textContent;

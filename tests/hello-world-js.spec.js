@@ -6,7 +6,7 @@ test(TEST_NAME + ' loads and renders', async ({ page }) => {
   await page.goto('/tests/' + TEST_NAME + '.html');
 
   // Wait for the component to be loaded and rendered
-  await page.waitForSelector('hello-world-js');
+  await page.locator('hello-world-js').waitFor();
 
   // Check that the component's shadow DOM contains the correct text
   const text = await page.evaluate(() => {

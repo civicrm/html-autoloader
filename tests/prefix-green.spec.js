@@ -6,7 +6,7 @@ test('prefix-green loads and renders with CSS', async ({ page }) => {
   await page.goto('/tests/' + TEST_NAME + '.html');
 
   // Wait for the component to be loaded and rendered
-  await page.waitForSelector('prefix-green');
+  await page.locator('prefix-green').waitFor();
 
   // Check that the component's shadow DOM contains the correct text
   const text = await page.evaluate(() => {
