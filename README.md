@@ -6,7 +6,7 @@ where one Web Component can reference another Web Component *without* knowledge 
 ## Requirements
 
 * __Browser Runtime__: [Baseline](https://web.dev/baseline) 2022 (or newer)
-* __Testing__: NodeJS v22 LTS (or newer), Playwright
+* __Testing__: NodeJS v22 LTS (or newer), [Playwright](https://playwright.dev/)
 
 ## Comparisons
 
@@ -153,12 +153,25 @@ The `HtmlAutoloader` has several methods, with fluent style.
 
 ## Testing
 
-The test-suite is based Playwright. It includes a series of example WebComponents, example HTML pages, and Playwright specs for each example page.
+The `tests/` folder includes several examples of HTML pages with autoloading for Web Components.  You can run these
+automatically (using [Playwright](https://playwright.dev/)) or interactively (in your web-browser).
 
-* `tests/*.html`: Example HTML web-pages which use `html-autoloader`. Each page instantiates `HtmlAutoloader` with an example element-map.
-    * (*For manual testing and debugging, simply the open the HTML file in your favorite web-browser.*)
-* `tests/*.spec.js`: Playwright scenarios. Each loads the HTML page and asserts that the elements are working.
-* `tests/resources/*`: The resource-files (JS, CSS, etc) for sample WebComponents. These are referenced by the elmement maps.
+```bash
+## Run all tests automatically
+npm test
+```
+
+```bash
+## Run an individual test (e.g. prefix-both.spec.js) via CLI
+npm run start &
+./node_modules/.bin/playwright test tests/prefix-both.spec.js
+```
+
+```bash
+# Run an individual test (eg. prefix-both.spec.js) interactively
+npm run start &
+### Then browse to http://localhost:8080/tests/prefix-both.html
+```
 
 ## TODO
 
