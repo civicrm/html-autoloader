@@ -1,5 +1,4 @@
 class HtmlAutoloader {
-
   constructor(importMeta) {
     this.importMeta = importMeta;
     this.availableElements = {};
@@ -25,12 +24,12 @@ class HtmlAutoloader {
             script.onerror = () => reject(new Error(`Failed to load JS: ${resource}`));
             document.head.appendChild(script);
           });
-        }
+        },
       },
       {
         name: 'css',
         onLoad: (resource) => {
-           return new Promise((resolve, reject) => {
+          return new Promise((resolve, reject) => {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
             link.href = resource;
@@ -39,18 +38,18 @@ class HtmlAutoloader {
             link.onerror = () => reject(new Error(`Failed to load CSS: ${resource}`));
             document.head.appendChild(link);
           });
-        }
+        },
       },
       {
         name: 'html',
         onLoad: (resource) => {
           return fetch(resource)
-            .then(response => response.text())
-            .then(html => {
+            .then((response) => response.text())
+            .then((html) => {
               appendHtmlWithScripts(html);
               return `HTML loaded: ${resource}`;
             });
-        }
+        },
       },
       {
         name: 'module',
@@ -63,16 +62,15 @@ class HtmlAutoloader {
             script.onerror = () => reject(new Error(`Failed to load module: ${resource}`));
             document.head.appendChild(script);
           });
-        }
+        },
       },
       {
         name: 'import',
         onLoad: (resource) => {
           const resolvedResource = this.importMeta.resolve(resource);
-          return import(resolvedResource)
-            .then(() => `Import loaded: ${resolvedResource}`);
-        }
-      }
+          return import(resolvedResource).then(() => `Import loaded: ${resolvedResource}`);
+        },
+      },
     ];
   }
 
@@ -82,8 +80,7 @@ class HtmlAutoloader {
     }
     if (elementRule.element) {
       this.availableElements[elementRule.element] = elementRule;
-    }
-    else if (elementRule.prefix) {
+    } else if (elementRule.prefix) {
       if (!elementRule.prefix.endsWith('-')) {
         throw new Error(`Prefix must end with a hyphen: ${elementRule.prefix}`);
       }
@@ -193,11 +190,11 @@ function appendHtmlWithScripts(htmlData) {
   const fragment = template.content;
 
   // Move nodes one by one so scripts execute
-  Array.from(fragment.childNodes).forEach(node => {
+  Array.from(fragment.childNodes).forEach((node) => {
     if (node.nodeName === 'SCRIPT') {
       const script = document.createElement('script');
 
-      Array.from(node.attributes).forEach(attr => {
+      Array.from(node.attributes).forEach((attr) => {
         script.setAttribute(attr.name, attr.value);
       });
 
