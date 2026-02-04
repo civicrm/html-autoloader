@@ -30,5 +30,4 @@ test('prefix-red loads and renders with CSS', async ({ page }) => {
     return window.getComputedStyle(el).color;
   });
   expect(color2).toBe('rgb(0, 255, 0)');
-
 });

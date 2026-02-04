@@ -5,7 +5,7 @@ import HtmlAutoloader from '../src/HtmlAutoloader.js';
 // Mock import.meta for the test environment
 const mockImportMeta = {
   url: 'file:///path/to/test.js', // Just a placeholder URL
-  resolve: (specifier) => specifier // A simple resolve that returns the specifier
+  resolve: (specifier) => specifier, // A simple resolve that returns the specifier
 };
 
 test('addElement throws error if prefix does not end with hyphen', async () => {
