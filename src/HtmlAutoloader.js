@@ -17,7 +17,7 @@ class HtmlAutoloader {
     return [
       {
         name: 'js',
-        onLoad: (resource, elementName, elementRule) => {
+        onLoad: (resource) => {
           return new Promise((resolve, reject) => {
             const script = document.createElement('script');
             script.src = resource;
@@ -29,7 +29,7 @@ class HtmlAutoloader {
       },
       {
         name: 'css',
-        onLoad: (resource, elementName, elementRule) => {
+        onLoad: (resource) => {
            return new Promise((resolve, reject) => {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
@@ -43,7 +43,7 @@ class HtmlAutoloader {
       },
       {
         name: 'html',
-        onLoad: (resource, elementName, elementRule) => {
+        onLoad: (resource) => {
           return fetch(resource)
             .then(response => response.text())
             .then(html => {
@@ -54,7 +54,7 @@ class HtmlAutoloader {
       },
       {
         name: 'module',
-        onLoad: (resource, elementName, elementRule) => {
+        onLoad: (resource) => {
           return new Promise((resolve, reject) => {
             const script = document.createElement('script');
             script.type = 'module';
@@ -67,7 +67,7 @@ class HtmlAutoloader {
       },
       {
         name: 'import',
-        onLoad: (resource, elementName, elementRule) => {
+        onLoad: (resource) => {
           const resolvedResource = this.importMeta.resolve(resource);
           return import(resolvedResource)
             .then(() => `Import loaded: ${resolvedResource}`);
