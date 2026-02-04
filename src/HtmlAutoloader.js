@@ -125,7 +125,7 @@ class HtmlAutoloader {
         }
       }
     });
-    observer.observe(document.body, { childList: true, subtree: true });
+    observer.observe(null, { childList: true, subtree: true }); // BREAK
 
     return this;
   }
