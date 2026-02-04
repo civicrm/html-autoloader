@@ -156,8 +156,9 @@ The `HtmlAutoloader` has several methods, with fluent style.
 The test-suite is based Playwright. It includes a series of example WebComponents, example HTML pages, and Playwright specs for each example page.
 
 * `tests/*.html`: Example HTML web-pages which use `html-autoloader`. Each page instantiates `HtmlAutoloader` with an example element-map.
+    * (*For manual testing and debugging, simply the open the HTML file in your favorite web-browser.*)
 * `tests/*.spec.js`: Playwright scenarios. Each loads the HTML page and asserts that the elements are working.
-* `tests/resources/*`: A set of resource-files (JS, CSS, etc). These are referenced by the elmement maps.
+* `tests/resources/*`: The resource-files (JS, CSS, etc) for sample WebComponents. These are referenced by the elmement maps.
 
 ## TODO
 
