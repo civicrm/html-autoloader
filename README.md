@@ -153,7 +153,7 @@ The `HtmlAutoloader` has several methods, with fluent style.
 
 ## Testing
 
-The test-suite is based Playright. It includes a series of example WebComponents, example HTML pages, and Playwright specs for each example page.
+The test-suite is based Playwright. It includes a series of example WebComponents, example HTML pages, and Playwright specs for each example page.
 
 * `tests/*.html`: Example HTML web-pages which use `html-autoloader`. Each page instantiates `HtmlAutoloader` with an example element-map.
 * `tests/*.spec.js`: Playwright scenarios. Each loads the HTML page and asserts that the elements are working.
