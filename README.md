@@ -28,7 +28,7 @@ classes/namespaces/folders/files.  For the browser, the `html-autoloader` provid
 </details>
 
 <details>
-  <sumary><b>Module-bundlers and Autoloaders</b></sumary>
+  <summary><b>Module-bundlers and Autoloaders</b></summary>
 
   Many Javascript applications use *bundlers*, like `webpack` or `esbuild`. These provide a mechanism to load several units of code into a web-browser, and they focus on *static-linking for Javascript modules*.
 
