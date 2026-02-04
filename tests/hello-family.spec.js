@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
-
-const TEST_NAME = require('path').parse(__filename).base.replace(/\.spec\.js/, '');
+const { test, expect } = require('@playwright/test');
+const path = require('path');
+const TEST_NAME = path.parse(__filename).base.replace(/\.spec\.js/, '');
 
 test.describe(TEST_NAME + ".html", () => {
   test('should load and render transitive dependencies', async ({ page }) => {

@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
-
-const TEST_NAME = require('path').parse(__filename).base.replace(/\.spec\.js/, '');
+const path = require('path');
+const TEST_NAME = path.parse(__filename).base.replace(/\.spec\.js/, '');
 
 test('prefix-red loads and renders with CSS', async ({ page }) => {
   await page.goto('/tests/' + TEST_NAME + '.html');
