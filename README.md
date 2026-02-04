@@ -160,7 +160,6 @@ The test-suite is based Playright. It includes a series of example WebComponents
 
 ## TODO
 
-* Test for importing/caching the element-map.
 * Test for transitive/chained loading. (Load `<foo-bar>` which then uses `<whiz-bang>`.)
 * Add assertions about #file operations. (Irrelevant files are not loaded.)
 * Full deduping of resources (e.g. if multiple rules refer to the same resources). This is implict for ESM `import`s, but HTML files, CSS files, and others are different.
