@@ -3,6 +3,7 @@ import globals from "globals";
 import json from "@eslint/json";
 import { defineConfig } from "eslint/config";
 import playwright from 'eslint-plugin-playwright'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
 export default defineConfig([
   { 
@@ -24,4 +25,5 @@ export default defineConfig([
     language: "json/json",
     extends: ["json/recommended"]
   },
+  eslintPluginPrettierRecommended
 ]);
