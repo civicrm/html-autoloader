@@ -1,0 +1,19 @@
+<template id="hello-family-tpl">
+  <ul>
+    <li id="li-carol"><hello-world-combined name="Carol"></hello-world-combined></li>
+    <li id="li-dave"><hello-world-combined name="Dave"></hello-world-combined></li>
+    <li id="li-eve"><hello-world-combined name="Eve"></hello-world-combined></li>
+  </ul>
+</template>
+
+<script type="text/javascript">
+class HelloFamily extends HTMLElement {
+
+  connectedCallback() {
+    this.innerHTML = document.getElementById('hello-family-tpl').innerHTML;
+  }
+
+}
+
+customElements.define('hello-family', HelloFamily);
+</script>

@@ -12,6 +12,10 @@
         "resources": {"html": "./resources/hello-world-combined.html"}
       },
       {
+        "element": "hello-family",
+        "resources": {"html": "./resources/hello-family.html"}
+      },
+      {
         "prefix": "prefix-",
         "resources": {"css": "prefix-bundle.css", "js": "prefix-bundle.js"}
       }
