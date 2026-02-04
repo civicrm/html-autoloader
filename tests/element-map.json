@@ -1,23 +1,22 @@
 [
-      {
-        "element": "hello-world-js",
-        "resources": {"js": "./resources/hello-world-js.js"}
-      },
-      {
-        "element": "hello-world-module",
-        "resources": {"module": "./resources/hello-world-module.js"}
-      },
-      {
-        "element": "hello-world-combined",
-        "resources": {"html": "./resources/hello-world-combined.html"}
-      },
-      {
-        "element": "hello-family",
-        "resources": {"html": "./resources/hello-family.html"}
-      },
-      {
-        "prefix": "prefix-",
-        "resources": {"css": "prefix-bundle.css", "js": "prefix-bundle.js"}
-      }
+  {
+    "element": "hello-world-js",
+    "resources": { "js": "./resources/hello-world-js.js" }
+  },
+  {
+    "element": "hello-world-module",
+    "resources": { "module": "./resources/hello-world-module.js" }
+  },
+  {
+    "element": "hello-world-combined",
+    "resources": { "html": "./resources/hello-world-combined.html" }
+  },
+  {
+    "element": "hello-family",
+    "resources": { "html": "./resources/hello-family.html" }
+  },
+  {
+    "prefix": "prefix-",
+    "resources": { "css": "prefix-bundle.css", "js": "prefix-bundle.js" }
+  }
 ]
-

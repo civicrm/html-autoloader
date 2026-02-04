@@ -1,4 +1,4 @@
-import greetings from "./greetings.module.js";
+import greetings from './greetings.module.js';
 
 class HelloWorldModule extends HTMLElement {
   constructor() {
