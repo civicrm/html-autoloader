@@ -50,7 +50,7 @@ Consider this example:
 <!-- FILE: index.html -->
 <script type="module">
   import HtmlAutoloader from "https://cdn.example.com/html-autoloader@1.0";
-  import elementMap from './dist/elements.json' with { type: 'json' };
+  import elementMap from './elements.json' with { type: 'json' };
 
   (new HtmlAutoloader(import.meta)).addElements(elementMap).register();
 </script>
@@ -62,17 +62,16 @@ Consider this example:
 ```
 ```javascript
 // FILE: dist/elements.json
-const elementMap = [
-  {element: 'apple-fuji',         resources: {js: 'https://example.com/apple/fuji.js', css: 'https://example.com/apple/fuji.css'},
-  {element: 'apple-delicious',    resources: {html: '/elements/apple-delicious.html'},
-  {element: 'apple-gala',         resources: {module: 'https://example.com/apple/gala.esm.js'},
-  {element: 'apple-honey-crisp',  resources: {import: 'elements/apple-honey-crisp.js'},
-  {prefix: 'banana-',             resources: {js: 'https://example.com/banana-bundle.js'}, css: 'https://example.com/banana-bundle.css'},
-  {prefix: 'cherry-',             resources: {module: 'https://example.com/cherry.esm.js'}},
-  {prefix: 'date-',               resources: {import: 'date/bundle.js'}},
-  {prefix: 'elderberry-',         resources: {import: 'elderberry/bundle.html}},
-];
-export { elementMap };
+[
+  {"element": 'apple-fuji',         "resources": {js: 'https://example.com/apple/fuji.js', css: 'https://example.com/apple/fuji.css'},
+  {"element": 'apple-delicious',    "resources": {html: '/elements/apple-delicious.html'},
+  {"element": 'apple-gala',         "resources": {module: 'https://example.com/apple/gala.esm.js'},
+  {"element": 'apple-honey-crisp',  "resources": {import: 'elements/apple-honey-crisp.js'},
+  {"prefix": 'banana-',             "resources": {js: 'https://example.com/banana-bundle.js'}, css: 'https://example.com/banana-bundle.css'},
+  {"prefix": 'cherry-',             "resources": {module: 'https://example.com/cherry.esm.js'}},
+  {"prefix": 'date-',               "resources": {import: 'date/bundle.js'}},
+  {"prefix": 'elderberry-',         "resources": {import: 'elderberry/bundle.html}},
+]
 ```
 
 Observe:
