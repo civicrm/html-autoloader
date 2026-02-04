@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const TEST_NAME = require('path').parse(__filename).base.replace(/\.spec\.js/, '');
 
-test.describe('HelloWorldCombined', () => {
+test.describe(TEST_NAME + ".html", () => {
   test('should render default greeting when no name attribute is provided', async ({ page }) => {
     await page.goto('/tests/' + TEST_NAME + '.html');
 

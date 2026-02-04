@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const TEST_NAME = require('path').parse(__filename).base.replace(/\.spec\.js/, '');
 
-test.describe('hello-family', () => {
+test.describe(TEST_NAME + ".html", () => {
   test('should load and render transitive dependencies', async ({ page }) => {
     await page.goto('/tests/' + TEST_NAME + '.html');
 

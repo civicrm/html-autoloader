@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 const TEST_NAME = require('path').parse(__filename).base.replace(/\.spec\.js/, '');
 
-test('hello-world component loads and renders', async ({ page }) => {
+test(TEST_NAME + ' loads and renders', async ({ page }) => {
   await page.goto('/tests/' + TEST_NAME + '/index.html');
 
   // Wait for the component to be loaded and rendered
