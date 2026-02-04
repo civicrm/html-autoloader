@@ -154,7 +154,7 @@ The `HtmlAutoloader` has several methods, with fluent style.
 ## Testing
 
 The `tests/` folder includes several examples of HTML pages with autoloading for Web Components.  You can run these
-automatically (using [Playwright](https://playwright.dev/)) or interactively (in your web-browser).
+examples automatically (using [Playwright](https://playwright.dev/)) or interactively (in your web-browser).
 
 ```bash
 ## Run all tests automatically
@@ -162,13 +162,13 @@ npm test
 ```
 
 ```bash
-## Run an individual test (e.g. prefix-both.spec.js) via CLI
+## Run an individual test via CLI (e.g. "prefix-both.spec.js")
 npm run start &
 ./node_modules/.bin/playwright test tests/prefix-both.spec.js
 ```
 
 ```bash
-# Run an individual test (eg. prefix-both.spec.js) interactively
+# Inspect an individual test via browser (e.g. "prefix-both.html")
 npm run start &
 ### Then browse to http://localhost:8080/tests/prefix-both.html
 ```
