@@ -1,4 +1,4 @@
-# html-autoloader: Draft specification
+# html-autoloader (*proof of concept*)
 
 The `html-autoloader` library provides a service for loading Web Components in web-browsers.  It facilitates _dynamic-linking_,
 where one Web Component can reference another Web Component *without* knowledge of its physical file-layout.
