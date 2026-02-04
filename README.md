@@ -6,7 +6,7 @@ where one Web Component can reference another Web Component *without* knowledge 
 ## Requirements
 
 * __Browser Runtime__: [Baseline](https://web.dev/baseline) 2022 (or newer)
-* __Testing__ NodeJS v22 LTS (or newer), Playwright
+* __Testing__: NodeJS v22 LTS (or newer), Playwright
 
 ## Comparisons
 
@@ -36,9 +36,9 @@ classes/namespaces/folders/files.  For the browser, the `html-autoloader` provid
 
   Static-linking and dynamic-linking have trade-offs, which are about as old as electronic computers. For example, static-linking can help performance (*e.g. it doesn't need to do any runtime searches*), but it can also hinder performance (*if the application has large subsystems that are infrequently accessed, then that creates bloat*).
 
-  The practices are not mutually exclusive; they can be complementary. For example, in Debian, the application `bin/curl` uses `libcurl` and `libssl`. These three artifacts are linked dynamically -- but at lower level, each individual artifact is the results of static linking.
+  The practices are not mutually exclusive; they can be complementary. For example, in Debian, the application `bin/curl` uses `libcurl` and `libssl`. In a broad sense, these three artifacts are linked dynamically -- but at lower level, each individual artifact is the result of static linking.
 
-  Similarly, the main web-application could use dynamic-linking, while large subsystems (such as "rich text editor") are deployed as statically-linked bundles.
+  Similarly, the main web-application could use dynamic-linking for WebComponents, and many specific subsystems (such as the "rich text editor") could use statically-linked bundles.
 
 </details>
 
@@ -160,8 +160,9 @@ The test-suite is based Playright. It includes a series of example WebComponents
 
 ## TODO
 
-* Weighted resource loading. (Insert `*.css` and `*.html` before executing `*.js`.)
-* Background preloading. (During idle periods, check for elements with `preload:INT` and fetch them. Requires ServiceWorker with Cache API.)
+* Weighted resource activation. (Insert `*.css` and `*.html` before inserting `*.js`.)
+* Background warmup. (During idle periods, check for elements with `warmup:INT` and fetch them. Requires ServiceWorker with Cache API.)
+* Prefix/Element ordering. (Sort by match-length. If `<foo-bar-whiz>` matches rules for `foo-` and `foo-bar-` and `foo-bar-whiz`, then activate in that order. Warmup en masse.)
 * Add assertions about #file operations. (Irrelevant files are not loaded.)
 * Full deduping of resources (e.g. if multiple rules refer to the same resources). This is implict for ESM `import`s, but HTML files, CSS files, and others are different.
 * `Promises` for loaded resources should provide structured information.
