@@ -108,14 +108,14 @@ class HtmlAutoloader {
     this.isRegistered = true;
 
     // Scan for existing elements
-    this.scan(document.body);
+    this.#scan(document.body);
 
     // Watch for new elements
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         for (const node of mutation.addedNodes) {
           if (node.nodeType === Node.ELEMENT_NODE) {
-            this.scan(node);
+            this.#scan(node);
           }
         }
       }
@@ -125,7 +125,7 @@ class HtmlAutoloader {
     return this;
   }
 
-  scan(rootNode) {
+  #scan(rootNode) {
     const elements = rootNode.querySelectorAll('*');
     for (const element of elements) {
       if (element.localName.includes('-')) {
